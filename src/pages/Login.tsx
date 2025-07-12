@@ -1,4 +1,7 @@
+import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router";
+import { UserService } from "../services/userService";
 
 interface FormData {
     email: string;
@@ -11,6 +14,8 @@ const Login = () => {
         password: "",
     });
 
+    const navigate = useNavigate();
+
     const changeFormData = (event: any): void => {
         const { name, value } = event.target;
         setFormData((prevData) => ({
@@ -19,7 +24,21 @@ const Login = () => {
         }));
     };
 
-    
+    const submitForm = async (): Promise<any> => {
+        try {
+            const { email, password } = formData;
+            const response = await UserService.loginUser(email, password);
+
+            console.log("rep", response);
+            if (!response.success) {
+                alert(response.message);
+            } else {
+                navigate("/home");
+            }
+        } catch (error) {
+            console.log("ERROR: ", error);
+        }
+    };
 
     return (
         <div className="flex">
@@ -34,7 +53,7 @@ const Login = () => {
                         <input
                             onChange={(e) => changeFormData(e)}
                             type="email"
-                            id="email"
+                            name="email"
                             className="w-full flex-1 appearance-none border-blue-300 bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 focus:outline-none"
                             placeholder="Email"
                         />
@@ -43,14 +62,17 @@ const Login = () => {
                         <input
                             onChange={(e) => changeFormData(e)}
                             type="password"
-                            id="password"
+                            name="password"
                             className="w-full flex-1 appearance-none border-blue-300 bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 focus:outline-none"
                             placeholder="Password"
                         />
                     </div>
                 </div>
-                <button className="mb-6 relative bg-blue-600 px-8 py-2 font-medium text-white hover:bg-blue-800">
-                    Get Started
+                <button
+                    onClick={() => submitForm()}
+                    className="mb-6 relative bg-blue-600 px-8 py-2 font-medium text-white hover:bg-blue-800"
+                >
+                    Login
                 </button>
 
                 <div className="mx-28">
