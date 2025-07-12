@@ -32,7 +32,7 @@ const Login = () => {
             if (!response.success) {
                 alert(response.message);
             } else {
-                navigate("/home");
+                navigate("/dashboard");
             }
         } catch (error) {
             console.log("ERROR: ", error);
