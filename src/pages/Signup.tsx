@@ -3,14 +3,20 @@ import { Link, useNavigate } from "react-router";
 import { UserService } from "../services/userService";
 
 interface FormData {
+    infrastructure_name: string;
     email: string;
+    mobile: number;
     password: string;
+    since: number;
 }
 
-const Login = () => {
+const Signup = () => {
     const [formData, setFormData] = useState<FormData>({
+        infrastructure_name: "",
         email: "",
+        mobile: 0,
         password: "",
+        since: 0,
     });
 
     const navigate = useNavigate();
@@ -25,14 +31,20 @@ const Login = () => {
 
     const submitForm = async (): Promise<any> => {
         try {
-            const { email, password } = formData;
-            const response = await UserService.loginUser(email, password);
+            const { infrastructure_name, email, mobile, password, since } = formData;
+            const response = await UserService.signupUser(
+                infrastructure_name,
+                email,
+                mobile,
+                password,
+                since
+            );
 
             console.log("rep", response);
             if (!response.success) {
                 alert(response.message);
             } else {
-                navigate("/home");
+                navigate("/login");
             }
         } catch (error) {
             console.log("ERROR: ", error);
@@ -51,6 +63,15 @@ const Login = () => {
                     <div className="focus-within:border-b-blue-500 relative mb-3 w-[20rem] flex overflow-hidden border-b-2 transition">
                         <input
                             onChange={(e) => changeFormData(e)}
+                            type="text"
+                            name="infrastructure_name"
+                            className="w-full flex-1 appearance-none border-blue-300 bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 focus:outline-none"
+                            placeholder="Infrastructure Name"
+                        />
+                    </div>
+                    <div className="focus-within:border-b-blue-500 relative mb-3 w-[20rem] flex overflow-hidden border-b-2 transition">
+                        <input
+                            onChange={(e) => changeFormData(e)}
                             type="email"
                             name="email"
                             className="w-full flex-1 appearance-none border-blue-300 bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 focus:outline-none"
@@ -60,10 +81,28 @@ const Login = () => {
                     <div className="focus-within:border-b-blue-500 relative mb-3 w-[20rem] flex overflow-hidden border-b-2 transition">
                         <input
                             onChange={(e) => changeFormData(e)}
+                            type="number"
+                            name="mobile"
+                            className="w-full flex-1 appearance-none border-blue-300 bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 focus:outline-none"
+                            placeholder="Mobile"
+                        />
+                    </div>
+                    <div className="focus-within:border-b-blue-500 relative mb-3 w-[20rem] flex overflow-hidden border-b-2 transition">
+                        <input
+                            onChange={(e) => changeFormData(e)}
                             type="password"
                             name="password"
                             className="w-full flex-1 appearance-none border-blue-300 bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 focus:outline-none"
                             placeholder="Password"
+                        />
+                    </div>
+                    <div className="focus-within:border-b-blue-500 relative mb-3 w-[20rem] flex overflow-hidden border-b-2 transition">
+                        <input
+                            onChange={(e) => changeFormData(e)}
+                            type="number"
+                            name="since"
+                            className="w-full flex-1 appearance-none border-blue-300 bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 focus:outline-none"
+                            placeholder="Since"
                         />
                     </div>
                 </div>
@@ -76,7 +115,7 @@ const Login = () => {
 
                 <div className="mx-28">
                     <p className="text-black text-sm">
-                        <Link to="/signup">Create new account</Link>
+                        <Link to="/login">Create new account</Link>
                     </p>
                     <hr className="bg-white" />
                 </div>
@@ -85,4 +124,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Signup;
