@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import { UserService } from "../services/userService";
+import { UserService } from "../../services/userService";
 
 interface FormData {
     infrastructure_name: string;
@@ -110,7 +110,7 @@ const Signup = () => {
                     onClick={() => submitForm()}
                     className="mb-6 relative bg-blue-600 px-8 py-2 font-medium text-white hover:bg-blue-800"
                 >
-                    Login
+                    Signup
                 </button>
 
                 <div className="mx-28">

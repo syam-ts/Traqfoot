@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
-import Dashboard from "./pages/Dashboard.tsx";
-import About from "./pages/About.tsx";
-import Login from "./pages/Login.tsx";
-import Signup from "./pages/Signup.tsx";
-import Layout from "./components/Layout.tsx";
+import Dashboard from "./pages/sensor/Dashboard.tsx";
+import About from "./pages/common/About.tsx";
+import Login from "./pages/user/Login.tsx";
+import Signup from "./pages/user/Signup.tsx";
+import Layout from "./components/common/Layout.tsx";
+import AddSensor from "./pages/sensor/AddSensor.tsx";
 
 const router = createBrowserRouter([
  {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+  },
+  {
+    path: "/addSensor",
+    element: <AddSensor />,
   },
   {
     path: "/about",

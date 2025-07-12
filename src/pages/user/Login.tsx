@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import { UserService } from "../services/userService";
+import { UserService } from "../../services/userService";
 
 interface FormData {
     email: string;
@@ -32,6 +32,7 @@ const Login = () => {
             if (!response.success) {
                 alert(response.message);
             } else {
+                localStorage.setItem("token", response.token);
                 navigate("/dashboard");
             }
         } catch (error) {

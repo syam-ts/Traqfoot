@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from "react-router";
-import Navbar from "./common/Navbar";
+import Navbar from ".././common/Navbar";
 
 const Layout = () => {
     const location = useLocation();
