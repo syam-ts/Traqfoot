@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { UserService } from "../../services/userService";
+import { useDispatch } from "react-redux";
+import { signInUser } from "../../redux/slices/userSlice";
 
 interface FormData {
     email: string;
@@ -12,7 +14,8 @@ const Login = () => {
         email: "",
         password: "",
     });
-
+      
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const changeFormData = (event: any): void => {
@@ -33,6 +36,7 @@ const Login = () => {
                 alert(response.message);
             } else {
                 localStorage.setItem("token", response.token);
+                dispatch(signInUser(response.user))
                 navigate("/dashboard");
             }
         } catch (error) {

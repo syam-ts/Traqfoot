@@ -1,8 +1,22 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router";
+import { signOutUser } from "../../redux/slices/userSlice";
 
 const Navbar = () => {
     const [openNavbar, setOpenNavbar] = useState<boolean>(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const singout = () => {
+
+        try {
+            dispatch(signOutUser());
+            navigate('/login'); 
+        } catch (error) {
+            console.log('ERROR: ',error);
+        }
+    }
 
     return (
         <div>
@@ -55,7 +69,11 @@ const Navbar = () => {
                                             role="menuitem"
                                             className="cursor-pointer text-slate-800 flex w-full text-sm items-center rounded-md p-3 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100"
                                         >
-                                           Logout
+                                           <button
+                                            onClick={() => singout()}
+                                           >
+                                            Logout
+                                           </button>
                                         </li>
                                     
                                     </ul>
