@@ -10,6 +10,7 @@ import ViewSensor from "./components/sensor/SensorView.tsx";
 import Profile from "./pages/user/Profile.tsx";
 import ProtectedRoute from "./HOC/ProtectedRoute.tsx";
 import GuestRoute from "./HOC/GuestProtectedRoute.tsx";
+import BasicForm from "./pages/user/Test.tsx";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Dashboard />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/test",
+        element: (
+          <ProtectedRoute>
+            <BasicForm />
           </ProtectedRoute>
         ),
       },

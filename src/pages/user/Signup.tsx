@@ -1,45 +1,18 @@
-import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { UserService } from "../../services/userService";
-import { useSelector } from "react-redux";
-
-interface FormData {
-    infrastructure_name: string;
-    email: string;
-    mobile: number;
-    password: string;
-    since: number;
-}
+import { signupValidation } from "../../Formik/signupValidation";
 
 const Signup = () => {
-    const [formData, setFormData] = useState<FormData>({
-        infrastructure_name: "",
-        email: "",
-        mobile: 0,
-        password: "",
-        since: 0,
-    });    const isUserLoggedIn = useSelector((state: any) => state.isUser);
- 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (isUserLoggedIn) {
-            navigate('/dashboard')
-        }
-    }, []);
- 
-
-    const changeFormData = (event: any): void => {
-        const { name, value } = event.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
-
-    const submitForm = async (): Promise<any> => {
+    const submitForm = async (
+        infrastructure_name: string,
+        email: string,
+        mobile: number,
+        password: string,
+        since: number
+    ): Promise<any> => {
         try {
-            const { infrastructure_name, email, mobile, password, since } = formData;
             const response = await UserService.signupUser(
                 infrastructure_name,
                 email,
@@ -59,63 +32,101 @@ const Signup = () => {
         }
     };
 
+    const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
+        signupValidation(submitForm);
+
     return (
-        <div className="flex">
+        <form className="flex" onSubmit={handleSubmit}>
             <img
                 src="https://cdn.pixabay.com/photo/2024/04/05/05/17/airport-8676548_1280.jpg"
                 className="w-screen h-screen absolute"
                 alt="track-crowd image"
             />
-            <div className="mx-auto my-10 max-w-md relative px-4 py-64 text-gray-700 sm:px-8">
+            <div className="mx-auto my-10 max-w-md relative backdrop-blur-[4px] px-4 py-20 mt-44 text-gray-700 sm:px-8">
                 <div className="mb-6">
                     <div className="focus-within:border-b-blue-500 relative mb-3 w-[20rem] flex overflow-hidden border-b-2 transition">
                         <input
-                            onChange={(e) => changeFormData(e)}
                             type="text"
                             name="infrastructure_name"
+                            onChange={handleChange}
+                            value={values.infrastructure_name}
+                            onBlur={handleBlur}
                             className="w-full flex-1 appearance-none border-blue-300 bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 focus:outline-none"
                             placeholder="Infrastructure Name"
                         />
                     </div>
+                    {touched.infrastructure_name && errors.infrastructure_name && (
+                        <div className="text-red-500 text-center font-sans text-sm">
+                            {errors.infrastructure_name}
+                        </div>
+                    )}
                     <div className="focus-within:border-b-blue-500 relative mb-3 w-[20rem] flex overflow-hidden border-b-2 transition">
                         <input
-                            onChange={(e) => changeFormData(e)}
                             type="email"
                             name="email"
+                            onChange={handleChange}
+                            value={values.email}
+                            onBlur={handleBlur}
                             className="w-full flex-1 appearance-none border-blue-300 bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 focus:outline-none"
                             placeholder="Email"
                         />
                     </div>
+                    {touched.email && errors.email && (
+                        <div className="text-red-500 text-center font-sans text-sm">
+                            {errors.email}
+                        </div>
+                    )}
                     <div className="focus-within:border-b-blue-500 relative mb-3 w-[20rem] flex overflow-hidden border-b-2 transition">
                         <input
-                            onChange={(e) => changeFormData(e)}
                             type="number"
                             name="mobile"
+                            onChange={handleChange}
+                            value={values.mobile || "mobile"}
+                            onBlur={handleBlur}
                             className="w-full flex-1 appearance-none border-blue-300 bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 focus:outline-none"
                             placeholder="Mobile"
                         />
                     </div>
+                    {touched.mobile && errors.mobile && (
+                        <div className="text-red-500 text-center font-sans text-sm">
+                            {errors.mobile}
+                        </div>
+                    )}
                     <div className="focus-within:border-b-blue-500 relative mb-3 w-[20rem] flex overflow-hidden border-b-2 transition">
                         <input
-                            onChange={(e) => changeFormData(e)}
                             type="password"
                             name="password"
+                            onChange={handleChange}
+                            value={values.password}
+                            onBlur={handleBlur}
                             className="w-full flex-1 appearance-none border-blue-300 bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 focus:outline-none"
                             placeholder="Password"
                         />
                     </div>
+                    {touched.password && errors.password && (
+                        <div className="text-red-500 text-center font-sans text-sm">
+                            {errors.password}
+                        </div>
+                    )}
                     <div className="focus-within:border-b-blue-500 relative mb-3 w-[20rem] flex overflow-hidden border-b-2 transition">
                         <input
-                            onChange={(e) => changeFormData(e)}
                             type="number"
                             name="since"
+                            onChange={handleChange}
+                            value={values.since || "since"}
+                            onBlur={handleBlur}
                             className="w-full flex-1 appearance-none border-blue-300 bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 focus:outline-none"
                             placeholder="Since"
                         />
                     </div>
+                    {touched.since && errors.since && (
+                        <div className="text-red-500 text-center font-sans text-sm">
+                            {errors.since}
+                        </div>
+                    )}
                 </div>
                 <button
-                    onClick={() => submitForm()}
+                    type="submit"
                     className="mb-6 relative bg-blue-600 px-8 py-2 font-medium text-white hover:bg-blue-800"
                 >
                     Signup
@@ -123,12 +134,12 @@ const Signup = () => {
 
                 <div className="mx-28">
                     <p className="text-black text-sm">
-                        <Link to="/login">Create new account</Link>
+                        <Link to="/login">Login to existing Account</Link>
                     </p>
                     <hr className="bg-white" />
                 </div>
             </div>
-        </div>
+        </form>
     );
 };
 
