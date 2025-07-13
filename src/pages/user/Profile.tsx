@@ -8,7 +8,7 @@ const Profile = () => {
         <div className="min-h-screen bg-gray-50 py-12">
             <div className="max-w-4xl mx-auto px-6">
                 {/* Header Section */}
-                <div className="text-center mb-12">
+                <div className="text-center mb-7 pt-12">
                     <div className="inline-flex items-center space-x-2 mb-4">
                         <div className="w-2 h-2 bg-gray-800 rounded-full"></div>
                         <span className="text-sm text-gray-500 uppercase tracking-wider font-medium">User Profile</span>

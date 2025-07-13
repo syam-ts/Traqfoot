@@ -29,7 +29,7 @@ const AddSensor = () => {
     return (
         <div className="min-h-screen bg-gray-50 py-12">
             <div className="max-w-lg mx-auto px-6">
-                <div className="text-center mb-12">
+                <div className="text-center mb-7 pt-18">
                     <div className="inline-flex items-center space-x-2 mb-4">
                         <div className="w-2 h-2 bg-gray-800 rounded-full"></div>
                         <span className="text-sm text-gray-500 uppercase tracking-wider font-medium">
