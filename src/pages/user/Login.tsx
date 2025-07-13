@@ -14,7 +14,7 @@ const Login = () => {
         email: "",
         password: "",
     });
-      
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -36,7 +36,7 @@ const Login = () => {
                 alert(response.message);
             } else {
                 localStorage.setItem("token", response.token);
-                dispatch(signInUser(response.user))
+                dispatch(signInUser(response.user));
                 navigate("/dashboard");
             }
         } catch (error) {

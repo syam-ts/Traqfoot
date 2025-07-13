@@ -8,42 +8,71 @@ import Layout from "./components/common/Layout.tsx";
 import AddSensor from "./pages/sensor/AddSensor.tsx";
 import ViewSensor from "./components/sensor/SensorView.tsx";
 import Profile from "./pages/user/Profile.tsx";
+import ProtectedRoute from "./HOC/ProtectedRoute.tsx";
+import GuestRoute from "./HOC/GuestProtectedRoute.tsx";
 
 const router = createBrowserRouter([
- {
-  element: <Layout />,
-  children:[
-    {
-      
-    path: '/login',
-    element: <Login />
-  },
   {
-    path: '/signup',
-    element: <Signup />
+    element: <Layout />,
+    children: [
+      {
+        path: "/login",
+        element: (
+          <GuestRoute>
+            <Login />
+          </GuestRoute>
+        ),
+      },
+      {
+        path: "/signup",
+        element: (
+          <GuestRoute>
+            <Signup />
+          </GuestRoute>
+        ),
+      },
+      {
+        path: "/dashboard",
+        element: (
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/addSensor",
+        element: (
+          <ProtectedRoute>
+            <AddSensor />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/sensor/:sensor_id",
+        element: (
+          <ProtectedRoute>
+            <ViewSensor />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/about",
+        element: (
+          <ProtectedRoute>
+            <About />
+          </ProtectedRoute>
+        ),
+      },
+    ],
   },
-  {
-    path: "/dashboard",
-    element: <Dashboard />,
-  },
-  {
-    path: "/addSensor",
-    element: <AddSensor />,
-  },
-  {
-    path: "/sensor/:sensor_id",
-    element: <ViewSensor />,
-  },
-  {
-    path: "profile",
-    element: <Profile />,
-  },
-  {
-    path: "/about",
-    element: <About />
-  }
-  ]
- }
 ]);
 
 const App = () => {

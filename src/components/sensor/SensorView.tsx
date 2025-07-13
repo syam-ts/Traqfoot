@@ -45,7 +45,7 @@ const SensorView = () => {
                     <li> {sensor.sensorLocation}</li>
                     <li>{sensor.createdAt}</li>
                     <li>{sensor.timestamp}</li>
-                    <li>count: 0,</li>
+                    <li>count: {sensor.count},</li>
                 </ul>
             </div>
             )

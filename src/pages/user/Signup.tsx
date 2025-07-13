@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { UserService } from "../../services/userService";
+import { useSelector } from "react-redux";
 
 interface FormData {
     infrastructure_name: string;
@@ -17,9 +18,16 @@ const Signup = () => {
         mobile: 0,
         password: "",
         since: 0,
-    });
-
+    });    const isUserLoggedIn = useSelector((state: any) => state.isUser);
+ 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (isUserLoggedIn) {
+            navigate('/dashboard')
+        }
+    }, []);
+ 
 
     const changeFormData = (event: any): void => {
         const { name, value } = event.target;
