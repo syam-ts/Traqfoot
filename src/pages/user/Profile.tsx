@@ -7,7 +7,6 @@ const Profile = () => {
     return ( 
         <div className="min-h-screen bg-gray-50 py-12">
             <div className="max-w-4xl mx-auto px-6">
-                {/* Header Section */}
                 <div className="text-center mb-7 pt-12">
                     <div className="inline-flex items-center space-x-2 mb-4">
                         <div className="w-2 h-2 bg-gray-800 rounded-full"></div>
@@ -18,13 +17,10 @@ const Profile = () => {
                     <p className="text-lg text-gray-600">Manage your profile and account settings</p>
                 </div>
 
-                {/* Profile Card */}
                 <div className="bg-white rounded-3xl shadow-lg border border-gray-200 overflow-hidden max-w-2xl mx-auto">
-                    {/* Header with gradient */}
                     <div className="bg-gradient-to-br from-gray-800 to-gray-900 px-8 py-8 text-center text-white relative overflow-hidden">
                         <div className="absolute top-0 left-0 w-full h-full bg-white/5"></div>
                         <div className="relative z-10">
-                            {/* Profile Avatar Placeholder */}
                             <div className="w-24 h-24 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center backdrop-blur-sm">
                                  <span className="font-bold text-4xl">{user.infrastructure_name[0]}</span>
                             </div>
@@ -33,9 +29,7 @@ const Profile = () => {
                         </div>
                     </div>
 
-                    {/* Profile Details */}
                     <div className="p-8 space-y-6">
-                        {/* Email */}
                         <div className="flex items-center space-x-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
                             <div className="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center flex-shrink-0">
                                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -48,7 +42,6 @@ const Profile = () => {
                             </div>
                         </div>
 
-                        {/* Mobile */}
                         <div className="flex items-center space-x-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
                             <div className="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center flex-shrink-0">
                                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -61,7 +54,6 @@ const Profile = () => {
                             </div>
                         </div>
 
-                        {/* Member Since */}
                         <div className="flex items-center space-x-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
                             <div className="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center flex-shrink-0">
                                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -75,15 +67,14 @@ const Profile = () => {
                         </div>
                     </div>
 
-                    {/* Action Buttons */}
-                    <div className="px-8 pb-8">
+                    {/* <div className="px-8 pb-8">
                         <div className="flex space-x-4">
                             <button className="flex-1 bg-gray-800 text-white py-3 px-6 rounded-2xl font-semibold hover:bg-gray-700 transition-colors duration-200">
                                 Edit Profile
                             </button>
                           
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
