@@ -16,7 +16,8 @@ export const signupValidation = (submitForm: any) => {
             if (!values.infrastructure_name) {
                 errors.infrastructure_name = "Infrastructure name is required";
             } else if (
-               values.infrastructure_name.length > 35 || values.infrastructure_name.length < 15
+                values.infrastructure_name.length > 35 ||
+                values.infrastructure_name.length < 15
             ) {
                 errors.infrastructure_name = "should be between 15 to 25 characters";
             }
@@ -29,10 +30,11 @@ export const signupValidation = (submitForm: any) => {
                 errors.email = "Invalid email address";
             }
 
-              if (!values.mobile) {
+            if (!values.mobile) {
                 errors.mobile = "Mobile number is required";
             } else if (
-                 values.mobile.toString().length < 9 || values.mobile.toString().length > 10
+                values.mobile.toString().length < 9 ||
+                values.mobile.toString().length > 10
             ) {
                 errors.mobile = "Mobile number should be valid";
             }
@@ -43,11 +45,9 @@ export const signupValidation = (submitForm: any) => {
                 errors.password = "Must be at least 6 characters";
             }
 
-                if (!values.since) {
+            if (!values.since) {
                 errors.since = "Since year is required";
-            } else if (
-                 values.since < 1947 || values.since > 2025
-            ) {
+            } else if (values.since < 1947 || values.since > 2025) {
                 errors.since = "Established year should be valid";
             }
 
@@ -56,7 +56,13 @@ export const signupValidation = (submitForm: any) => {
 
         onSubmit: (values) => {
             console.log(values);
-            submitForm(values.infrastructure_name,values.email, values.mobile, values.password, values.since);
+            submitForm(
+                values.infrastructure_name,
+                values.email,
+                values.mobile,
+                values.password,
+                values.since
+            );
         },
     });
 };

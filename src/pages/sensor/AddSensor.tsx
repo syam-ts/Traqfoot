@@ -1,42 +1,34 @@
-import { useState } from "react";
 import { sensors } from "../../configs/constants/sensor";
 import { SensorService } from "../../services/sensorService";
 import { useNavigate } from "react-router";
+import { addSensorValidation } from "../../Formik/addSensorValidation";
 
 const AddSensor = () => {
-    const [formData, setFormData] = useState({
-        sensorName: "",
-        sensorLocation: "",
-    });
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
-    const changeFormData = (event: any) => {
-        const {name, value} = event.target;
-        setFormData(prevData => ({
-            ...prevData,
-            [name]: value
-        }))
-    };
-console.log('form ', formData)
-
-    const submitForm = async () => {
+    const submitForm = async (sensorName: string, sensorLocation: string) => {
         try {
-                  const { sensorName, sensorLocation } = formData;
-                  const response = await SensorService.addNewSensor(sensorName, sensorLocation);
-      
-                  console.log("rep", response);
-                  if (!response.success) {
-                      alert(response.message);
-                  } else { 
-                        navigate("/dashboard");
-                  }
-              } catch (error) {
-                  console.log("ERROR: ", error);
-              }
-    }
+            const response = await SensorService.addNewSensor(
+                sensorName,
+                sensorLocation
+            );
+
+            console.log("rep", response);
+            if (!response.success) {
+                alert(response.message);
+            } else {
+                navigate("/dashboard");
+            }
+        } catch (error) {
+            console.log("ERROR: ", error);
+        }
+    };
+
+    const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
+        addSensorValidation(submitForm);
 
     return (
-        <div className="py-64 grid gap-7 justify-center">
+        <form className="py-64 grid gap-7 justify-center" onSubmit={handleSubmit}>
             <div>
                 <h4 className="block text-xl font-medium text-slate-800">
                     Add New Sensor
@@ -53,9 +45,11 @@ console.log('form ', formData)
                     </label>
                     <div className="relative">
                         <select
-                        name="sensorName"
-                        onChange={(e) => changeFormData(e)}
-                         className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded pl-3 pr-8 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md appearance-none cursor-pointer">
+                            name="sensorName"
+                            onChange={handleChange}
+                            value={values.sensorName}
+                            className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded pl-3 pr-8 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md appearance-none cursor-pointer"
+                        >
                             {sensors.map((sensor: string) => (
                                 <option value={sensor}>{sensor}</option>
                             ))}
@@ -75,6 +69,9 @@ console.log('form ', formData)
                             />
                         </svg>
                     </div>
+                    {touched.sensorName && errors.sensorName && (
+                        <div className="text-red-500 text-center">{errors.sensorName}</div>
+                    )}
                 </div>
             </div>
 
@@ -85,23 +82,28 @@ console.log('form ', formData)
                     </label>
                     <input
                         type="text"
-                        onChange={(e) => changeFormData(e)}
                         name="sensorLocation"
+                        onChange={handleChange}
+                        value={values.sensorLocation}
+                        onBlur={handleBlur}
                         className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                         placeholder="Sensor Location"
                     />
                 </div>
+                {touched.sensorLocation && errors.sensorLocation && (
+                    <div className="text-red-500 text-center">
+                        {errors.sensorLocation}
+                    </div>
+                )}
             </div>
 
             <button
-            onClick={() => submitForm()}
+                type="submit"
                 className="mt-4 w-full font-bold rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                type="button"
-
             >
                 Add Sensor
             </button>
-        </div>
+        </form>
     );
 };
 
