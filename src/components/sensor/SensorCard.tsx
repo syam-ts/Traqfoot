@@ -82,36 +82,22 @@ const SensorCard: React.FC<SensorCardProps> = ({ sensors }) => {
                         </div>
                     </div>
 
-                    <div className="relative z-10 space-y-2 mb-3">
-                        <div className="flex items-center justify-between p-2 bg-gray-50 rounded-xl">
-                            <div className="flex items-center space-x-2">
-                                <svg
-                                    className="w-4 h-4 text-gray-500"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                                    />
-                                </svg>
-                                <span className="text-sm text-gray-600">Built</span>
-                            </div>
-                            <span className="text-sm font-medium text-gray-900">
-                                {sensor.createdAt}
-                            </span>
-                        </div>
-
+                    <div className="relative z-10 space-y-2 mb-3 py-2">
+                      
                         <div className="flex items-center justify-between p-1 bg-green-50 rounded-xl border border-green-100">
                             <div className="flex items-center space-x-2">
                                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                                 <span className="text-sm text-green-700">Last Update</span>
                             </div>
                             <span className="text-sm font-medium text-green-900">
-                                {sensor.timestamp}
+                                {new Date(sensor.timestamp).toLocaleString("en-US", {
+                                            // year: "numeric",
+                                            // month: "long",
+                                            // day: "numeric",
+                                            hour: "numeric",
+                                            minute: "2-digit",
+                                            hour12: true,
+                                        })}
                             </span>
                         </div>
                     </div>

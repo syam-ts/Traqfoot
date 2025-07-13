@@ -29,15 +29,15 @@ const Navbar = () => {
                             </a>
                         </div>
                         <div className="hidden md:flex md:items-center md:justify-center md:gap-5">
-                            <p className="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900">
+                            <p className="inline-block rounded-lg px-2 py-1 text-md font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900">
                                 <Link to="/dashboard">Dashboard</Link>
                             </p>
 
-                            <p className="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900">
+                            <p className="inline-block rounded-lg px-2 py-1 text-md font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900">
                                 <Link to="/addSensor">Add new Sensor</Link>
                             </p>
 
-                            <p className="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900">
+                            <p className="inline-block rounded-lg px-2 py-1 text-md font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900">
                                 <Link to="/about">About</Link>
                             </p>
                         </div>
