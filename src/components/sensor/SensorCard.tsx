@@ -6,6 +6,7 @@ interface Sensor {
     createdAt: string;
     timestamp: string;
     count: number;
+    _id: string;
 }
 
 interface SensorCardProps {
@@ -13,40 +14,139 @@ interface SensorCardProps {
 }
 
 const SensorCard: React.FC<SensorCardProps> = ({ sensors }) => {
-    
     return (
-        <div className="flex flex-wrap mx-44 gap-2 ">
-            {sensors.map((sensor: any) => (
-                <div className="container bg-gradient-to-r  from-gray-300 to-gray-400 text-white p-8 rounded-lg shadow-lg max-w-md mx-auto">
-                    <div className="text-3xl font-bold mb-4">{sensor.sensorName}</div>
-                    <div className="text-lg mb-4">
-                        Location:
-                        <span className="text-black font-bold">
-                            {sensor.sensorLocation}
-                        </span>
-                    </div>
-                    <div className="text-base mb-4">Built: {sensor.createdAt}</div>
+        <div className="flex flex-wrap w-4/5 justify-center gap-8 mx-auto px-8 py-12 bg-white">
+            {sensors.map((sensor) => (
+                <div
+                    key={sensor._id}
+                    className="group relative bg-white/80 backdrop-blur-sm border border-white/50 rounded-3xl px-4 py-2 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 ease-out max-w-xs w-full overflow-hidden"
+                >
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-600/5 via-purple-600/5 to-pink-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
 
-                    <div className="text-sm mt-4">
-                        <p>
-                            Valid until
-                            <span className="font-semibold">
-                                Last update: {sensor.timestamp}
-                            </span>
-                        </p>
-                        <p className="text-xl font-bold text-black">
-                            Count: {sensor.count}
-                        </p>
+                    <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-gray-400 to-purple-600 rounded-full blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+
+                    <div className="relative z-10 mb-1">
+                        <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center space-x-3">
+                                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                                <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Active Sensor
+                                </span>
+                            </div>
+                            <div className="px-3 py-1 bg-gradient-to-r from-gray-500 to-purple-600 rounded-full text-white text-xs font-semibold">
+                                Live
+                            </div>
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-1 group-hover:text-gray-600 transition-colors duration-300">
+                            {sensor.sensorName}
+                        </h3>
                     </div>
-                    <div className="pt-4">
-                        <button
-                            className=" cursor-pointer rounded-md bg-white text-black py-2 px-7 border border-transparent text-center text-sm transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2"
-                            type="button"
+
+                    <div className="relative z-10 mb-1">
+                        <div className="flex items-center space-x-3 py-2 px-2 bg-gradient-to-r from-gray-50 to-gray-50 rounded-2xl border border-gray-300">
+                            <div className="w-8 h-8 bg-gradient-to-br from-gray-500 to-purple-600 rounded-xl flex items-center justify-center">
+                                <svg
+                                    className="w-5 h-5 text-white"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                    />
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                                    />
+                                </svg>
+                            </div>
+                            <div>
+                                <p className="text-xs text-gray-500 uppercase tracking-wide">
+                                    Location
+                                </p>
+                                <p className="text-lg font-semibold text-gray-900">
+                                    {sensor.sensorLocation}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* count section */}
+                    <div className="relative z-10 mb-1">
+                        <div className="text-center p-2 bg-gradient-to-br from-indigo-600 via-gray-600 rounded-xl text-white relative overflow-hidden">
+                            <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
+                            <div className="relative z-10">
+                                <p className="text-sm opacity-90 mb-1">Current Count</p>
+                                <p className="text-3xl font-bold mb-1">
+                                    {sensor.count.toLocaleString()}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="relative z-10 space-y-2 mb-3">
+                        <div className="flex items-center justify-between p-2 bg-gray-50 rounded-xl">
+                            <div className="flex items-center space-x-2">
+                                <svg
+                                    className="w-4 h-4 text-gray-500"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                    />
+                                </svg>
+                                <span className="text-sm text-gray-600">Built</span>
+                            </div>
+                            <span className="text-sm font-medium text-gray-900">
+                                {sensor.createdAt}
+                            </span>
+                        </div>
+
+                        <div className="flex items-center justify-between p-1 bg-green-50 rounded-xl border border-green-100">
+                            <div className="flex items-center space-x-2">
+                                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                <span className="text-sm text-green-700">Last Update</span>
+                            </div>
+                            <span className="text-sm font-medium text-green-900">
+                                {sensor.timestamp}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="relative z-10">
+                        <Link
+                            to={`/sensor/${sensor._id}`}
+                            className="group/btn relative w-full inline-flex items-center justify-center px-6 py-2 text-sm font-semibold text-white bg-gradient-to-r from-gray-600 via-purple-600 to-indigo-600 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 overflow-hidden"
                         >
-                            <Link to={`/sensor/${sensor._id}`}>
-                            View
-                            </Link>
-                        </button>
+                            <div className="absolute inset-0 bg-gradient-to-r from-gray-700 via-gray-700 to-gray-700 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                            <div className="relative z-10 flex items-center space-x-2">
+                                <span>View Details</span>
+                                <svg
+                                    className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform duration-300"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M13 7l5 5m0 0l-5 5m5-5H6"
+                                    />
+                                </svg>
+                            </div>
+                            <div className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform transition-transform duration-1000 ease-out skew-x-12"></div>
+                        </Link>
                     </div>
                 </div>
             ))}
