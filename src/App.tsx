@@ -6,6 +6,7 @@ import Login from "./pages/user/Login.tsx";
 import Signup from "./pages/user/Signup.tsx";
 import Layout from "./components/common/Layout.tsx";
 import AddSensor from "./pages/sensor/AddSensor.tsx";
+import ViewSensor from "./components/sensor/SensorView.tsx";
 
 const router = createBrowserRouter([
  {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/addSensor",
     element: <AddSensor />,
+  },
+  {
+    path: "/sensor/:sensor_id",
+    element: <ViewSensor />,
   },
   {
     path: "/about",

@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 interface Sensor {
     sensorName: string;
     sensorLocation: string;
@@ -41,7 +43,9 @@ const SensorCard: React.FC<SensorCardProps> = ({ sensors }) => {
                             className=" cursor-pointer rounded-md bg-white text-black py-2 px-7 border border-transparent text-center text-sm transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2"
                             type="button"
                         >
+                            <Link to={`/sensor/${sensor._id}`}>
                             View
+                            </Link>
                         </button>
                     </div>
                 </div>
