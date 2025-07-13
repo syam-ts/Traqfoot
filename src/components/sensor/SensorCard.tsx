@@ -1,29 +1,22 @@
 import { Link } from "react-router";
-
-interface Sensor {
-    sensorName: string;
-    sensorLocation: string;
-    createdAt: string;
-    timestamp: string;
-    count: number;
-    _id: string;
-}
+ 
 
 interface SensorCardProps {
-    sensors: Sensor[];
+    sensors: any[];
 }
 
 const SensorCard: React.FC<SensorCardProps> = ({ sensors }) => {
     return (
-        <div className="flex flex-wrap w-4/5 justify-center gap-8 mx-auto px-8 py-12 bg-white">
+        <div className="flex flex-wrap w-[96rem] justify-center gap-6 space-y-12 mx-auto px-8 py-12 bg-white">
+             
             {sensors.map((sensor) => (
                 <div
                     key={sensor._id}
-                    className="group relative bg-white/80 backdrop-blur-sm border border-white/50 rounded-3xl px-4 py-2 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 ease-out max-w-xs w-full overflow-hidden"
+                    className="group relative bg-white/80 backdrop-blur-sm border border-white/100 rounded-3xl px-4 py-2 shadow-2xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 ease-out max-w-xs w-full overflow-hidden"
                 >
-                    <div className="absolute inset-0 bg-gradient-to-br from-gray-600/5 via-purple-600/5 to-pink-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-600/5 via-gray-600/5 to-pink-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
 
-                    <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-gray-400 to-purple-600 rounded-full blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+                    <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
 
                     <div className="relative z-10 mb-1">
                         <div className="flex items-center justify-between mb-2">
@@ -33,7 +26,7 @@ const SensorCard: React.FC<SensorCardProps> = ({ sensors }) => {
                                     Active Sensor
                                 </span>
                             </div>
-                            <div className="px-3 py-1 bg-gradient-to-r from-gray-500 to-purple-600 rounded-full text-white text-xs font-semibold">
+                            <div className="px-3 py-1 bg-black rounded-full text-white text-xs font-semibold">
                                 Live
                             </div>
                         </div>
@@ -44,7 +37,7 @@ const SensorCard: React.FC<SensorCardProps> = ({ sensors }) => {
 
                     <div className="relative z-10 mb-1">
                         <div className="flex items-center space-x-3 py-2 px-2 bg-gradient-to-r from-gray-50 to-gray-50 rounded-2xl border border-gray-300">
-                            <div className="w-8 h-8 bg-gradient-to-br from-gray-500 to-purple-600 rounded-xl flex items-center justify-center">
+                            <div className="w-8 h-8 bg-black rounded-xl flex items-center justify-center">
                                 <svg
                                     className="w-5 h-5 text-white"
                                     fill="none"
@@ -77,12 +70,12 @@ const SensorCard: React.FC<SensorCardProps> = ({ sensors }) => {
                     </div>
 
                     {/* count section */}
-                    <div className="relative z-10 mb-1">
-                        <div className="text-center p-2 bg-gradient-to-br from-indigo-600 via-gray-600 rounded-xl text-white relative overflow-hidden">
+                    <div className="relative z-10 rounded-full">
+                        <div className="text-center p-2 bg-gradient-to-br bg-black rounded-xl text-white relative overflow-hidden">
                             <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
                             <div className="relative z-10">
-                                <p className="text-sm opacity-90 mb-1">Current Count</p>
-                                <p className="text-3xl font-bold mb-1">
+                                <p className="text-sm opacity-90 ">Current Count</p>
+                                <p className="text-3xl font-bold ">
                                     {sensor.count.toLocaleString()}
                                 </p>
                             </div>
@@ -126,9 +119,9 @@ const SensorCard: React.FC<SensorCardProps> = ({ sensors }) => {
                     <div className="relative z-10">
                         <Link
                             to={`/sensor/${sensor._id}`}
-                            className="group/btn relative w-full inline-flex items-center justify-center px-6 py-2 text-sm font-semibold text-white bg-gradient-to-r from-gray-600 via-purple-600 to-indigo-600 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 overflow-hidden"
+                            className="group/btn relative w-full inline-flex items-center justify-center px-6 py-2 text-sm font-semibold text-white bg-gradient-to-r bg-black to-gray-600 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 overflow-hidden"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-r from-gray-700 via-gray-700 to-gray-700 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                            <div className="absolute inset-0 bg-black opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
                             <div className="relative z-10 flex items-center space-x-2">
                                 <span>View Details</span>
                                 <svg
