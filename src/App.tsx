@@ -1,5 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"; // ✅ CORRECT
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom"; 
 import Dashboard from "./pages/sensor/Dashboard.tsx";
 import About from "./pages/common/About.tsx";
 import Login from "./pages/user/Login.tsx";
