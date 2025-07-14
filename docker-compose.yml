@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  frontend:
+    build: ./traqfoot-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+  backend:
+    build: ./traqfoot-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URI=mongodb+srv://syamnandhu3:0Dci4UZA1ptbECeO@traqfoot.s7hno19.mongodb.net/?retryWrites=true&w=majority&appName=Traqfoot
