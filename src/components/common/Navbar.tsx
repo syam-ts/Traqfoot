@@ -24,7 +24,7 @@ const Navbar = () => {
                     <div className="flex items-center justify-between">
                         {/* Logo Section */}
                         <div className="flex shrink-0">
-                            <Link to="/" className="flex items-center space-x-2 group">
+                            <Link to="/dashboard" className="flex items-center space-x-2 group">
                                 <div className="w-8 h-8 bg-gray-800 rounded-xl flex items-center justify-center group-hover:bg-gray-700 transition-colors duration-200">
                                     <img className="h-5 w-auto" src="logo.webp" alt="Logo" />
                                 </div>

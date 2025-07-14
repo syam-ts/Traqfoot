@@ -42,7 +42,7 @@ const Dashboard = () => {
  
   return (
     <div className="pt-28 justify-center">
-      {sensors.length > 1 ? (
+      {sensors.length >= 1 ? (
         <div>
           <div className="text-center mb-1 ">
             <div className="inline-flex items-center space-x-3 mb-2">
