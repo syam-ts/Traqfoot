@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Sensor } from "../../configs/interfaces/Sensor";
 import { SensorService } from "../../services/sensorService";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 
 const SensorView = () => {
     const [sensor, setSensor] = useState<Sensor>({
