@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import { UserService } from "../../services/userService";
 import { signupValidation } from "../../Formik/signupValidation";
 import { toast, Toaster } from "sonner";

@@ -1,6 +1,6 @@
 import { sensors } from "../../configs/constants/sensor";
 import { SensorService } from "../../services/sensorService";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { addSensorValidation } from "../../Formik/addSensorValidation";
 
 const AddSensor = () => {
