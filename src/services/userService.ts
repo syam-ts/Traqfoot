@@ -1,9 +1,12 @@
 import axios from "axios";
+import { config } from "../configs/helper/config";
+
+const BACKEND_URL = config.BACKEND_URL;
 
 export const UserService = {
     loginUser: async (email: string, password: string) => {
         try {
-            const { data } = await axios.post("http://localhost:3000/user/login", {
+            const { data } = await axios.post(`${BACKEND_URL}/user/login`, {
                 email,
                 password,
             });
@@ -23,7 +26,7 @@ export const UserService = {
         since: number
     ) => {
         try {
-            const { data } = await axios.post("http://localhost:3000/user/signup", {
+            const { data } = await axios.post(`${BACKEND_URL}/user/signup`, {
                 infrastructure_name,
                 email,
                 mobile,

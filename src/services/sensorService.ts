@@ -1,11 +1,14 @@
 import axios from "axios";
+import { config } from "../configs/helper/config";
+
+const BACKEND_URL = config.BACKEND_URL;
 
 export const SensorService = {
     addNewSensor: async (sensorName: string, sensorLocation: string) => {
         try {
             const token = localStorage.getItem("token");
             const { data } = await axios.post(
-                "http://localhost:3000/sensor/new",
+                `${BACKEND_URL}/sensor/new`,
                 {
                     sensorName,
                     sensorLocation,
@@ -28,7 +31,7 @@ export const SensorService = {
         try {
             const token = localStorage.getItem("token");
             const { data } = await axios.get(
-                "http://localhost:3000/sensor/fetchAll", 
+                `${BACKEND_URL}/sensor/fetchAll`, 
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -48,7 +51,7 @@ export const SensorService = {
         try {
             const token = localStorage.getItem("token");
             const { data } = await axios.get(
-                `http://localhost:3000/sensor/view/${sensor_id}`, 
+                `${BACKEND_URL}/sensor/view/${sensor_id}`, 
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
