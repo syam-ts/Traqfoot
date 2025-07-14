@@ -17,7 +17,7 @@
   <li>✅ Formik (form validation)</li>
   <li>🎞️ Framer Motion (UI animation)</li>
   <li>🔔 Sonner (toast notifications)</li>
-  <li>🐳 <b>Docker (containerized deployment)</b></li>
+  <li>🐳 Docker (containerized deployment)</li>
 </ul>
 
 ---
