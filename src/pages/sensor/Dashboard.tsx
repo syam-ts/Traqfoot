@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import SensorCard from "../../components/sensor/SensorCard";
-import { SensorService } from "../../services/sensorService";
+import { SensorService } from "../../services/sensorService"; 
+import { Spinner } from "../../features/spinner/Spinner.tsx";
 
 interface Sensors {
   sensorName: string;
@@ -20,16 +21,20 @@ const Dashboard = () => {
       count: 0,
     },
   ]);
+  const [loadingSpinner, setLoadingSpinner] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchAllSensors = async () => {
       try {
+        setLoadingSpinner(true);
         const response = await SensorService.getAllSensors();
 
-        console.log("Response: ", response.sensors);
+        // console.log("Response: ", response.sensors);
         if (!response.success) {
+          setLoadingSpinner(false);
           alert(response.message);
         } else {
+          setLoadingSpinner(false);
           setSensors(response.sensors);
         }
       } catch (error) {
@@ -39,9 +44,11 @@ const Dashboard = () => {
     fetchAllSensors();
   }, []);
 
- 
   return (
     <div className="pt-28 justify-center">
+      {
+        loadingSpinner && <Spinner />
+      }
       {sensors.length >= 1 ? (
         <div>
           <div className="text-center mb-1 ">
