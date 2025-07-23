@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import type { Sensor } from "../../configs/interfaces/Sensor";
 import { SensorService } from "../../services/sensorService";
 import { useParams } from "react-router";
+import { Spinner } from "../../features/spinner/Spinner";
 
 const SensorView = () => {
+    const [loadingSpinner, setLoadingSpinner] = useState<boolean>(false);
+
     const [sensor, setSensor] = useState<Sensor>({
         sensorName: "",
         sensorLocation: "",
@@ -18,12 +21,15 @@ const SensorView = () => {
     useEffect(() => {
         const viewSensor = async (sensor_id: string | undefined) => {
             try {
+                setLoadingSpinner(true);
                 const response = await SensorService.viewSensor(sensor_id);
 
-                console.log("Response: ", response.sensor);
+                // console.log("Response: ", response.sensor);
                 if (!response.success) {
+                    setLoadingSpinner(false);
                     alert(response.message);
                 } else {
+                    setLoadingSpinner(false);
                     setSensor(response.sensor);
                 }
             } catch (error) {
@@ -35,6 +41,7 @@ const SensorView = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 pt-36">
+            {loadingSpinner && <Spinner />}
             {sensor.sensorName !== "" && (
                 <div className="max-w-2xl mx-auto px-6">
                     <div className="text-center mb-12">

@@ -2,9 +2,13 @@ import { Link, useNavigate } from "react-router";
 import { UserService } from "../../services/userService";
 import { signupValidation } from "../../Formik/signupValidation";
 import { toast, Toaster } from "sonner";
+import { Spinner } from "../../features/spinner/spinner";
+import { useState } from "react";
 
 const Signup = () => {
     const navigate = useNavigate();
+        const [loadingSpinner, setLoadingSpinner] = useState<boolean>(false);
+    
 
     const submitForm = async (
         infrastructure_name: string,
@@ -14,6 +18,7 @@ const Signup = () => {
         since: number
     ): Promise<any> => {
         try {
+            setLoadingSpinner(true)
             const response = await UserService.signupUser(
                 infrastructure_name,
                 email,
@@ -24,6 +29,7 @@ const Signup = () => {
 
             console.log("rep", response);
             if (!response.success) {
+                setLoadingSpinner(false)
                 toast.error(response.message, {
                     style: {
                         backgroundColor: "red",
@@ -34,6 +40,7 @@ const Signup = () => {
                     position: "top-center",
                 });
             } else {
+                setLoadingSpinner(false)
                 navigate("/login");
             }
         } catch (error) {
@@ -46,6 +53,9 @@ const Signup = () => {
 
     return (
         <div>
+            {
+                loadingSpinner && <Spinner />
+            }
             <Toaster />
             <div className="min-h-screen flex">
                 <div className="flex-1 flex items-center justify-center px-6 py-10">

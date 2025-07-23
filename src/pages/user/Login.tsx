@@ -4,17 +4,22 @@ import { UserService } from "../../services/userService";
 import { signInUser } from "../../redux/slices/userSlice";
 import { loginValidation } from "../../Formik/loginValidation";
 import { toast, Toaster } from "sonner";
+import { useState } from "react";
+import { Spinner } from "../../features/spinner/spinner";
 
 const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [loadingSpinner, setLoadingSpinner] = useState<boolean>(false);
 
     const submitForm = async (email: string, password: string): Promise<any> => {
         try {
+            setLoadingSpinner(true);
             const response = await UserService.loginUser(email, password);
 
-            console.log("rep", response);
+            // console.log("rep", response);
             if (!response.success) {
+                setLoadingSpinner(false);
                 toast.error(response.message, {
                     style: {
                         backgroundColor: "red",
@@ -25,6 +30,7 @@ const Login = () => {
                     position: "top-center",
                 });
             } else {
+                setLoadingSpinner(false);
                 localStorage.setItem("token", response.token);
                 dispatch(signInUser(response.user));
                 navigate("/dashboard");
@@ -39,6 +45,9 @@ const Login = () => {
 
     return (
         <div>
+            {
+                loadingSpinner && <Spinner />
+            }
             <Toaster />
             <div className="min-h-screen flex">
                 <div className="flex-1 flex items-center justify-center px-6 py-12">
