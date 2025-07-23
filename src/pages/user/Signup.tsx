@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router";
 import { UserService } from "../../services/userService";
 import { signupValidation } from "../../Formik/signupValidation";
 import { toast, Toaster } from "sonner";
-import { Spinner } from "../../features/spinner/spinner";
+import { Spinner } from "../../features/spinner/Spinner.tsx";
 import { useState } from "react";
 
 const Signup = () => {

@@ -5,7 +5,7 @@ import { signInUser } from "../../redux/slices/userSlice";
 import { loginValidation } from "../../Formik/loginValidation";
 import { toast, Toaster } from "sonner";
 import { useState } from "react";
-import { Spinner } from "../../features/spinner/spinner";
+import { Spinner } from "../../features/spinner/Spinner.tsx";
 
 const Login = () => {
     const dispatch = useDispatch();
