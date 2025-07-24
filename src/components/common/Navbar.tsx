@@ -19,7 +19,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <header className="fixed inset-x-0 top-0 z-50 mx-auto w-full max-w-screen-md border border-gray-200/50 bg-white/90 backdrop-blur-md py-4 shadow-lg md:top-6 md:rounded-3xl lg:max-w-screen-lg">
+            <header className="fixed inset-x-0 top-0 z-50 mx-auto w-full max-w-screen-md border border-gray-200/50 bg-white/90 backdrop-blur-md py-6 shadow-lg md:top-6 md:rounded-3xl lg:max-w-screen-lg">
                 <div className="px-6">
                     <div className="flex items-center justify-between">
                         {/* Logo Section */}

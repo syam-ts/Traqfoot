@@ -45,13 +45,13 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="pt-28 justify-center">
+    <div className="pt-22 justify-center">
       {
         loadingSpinner && <Spinner />
       }
       {sensors.length >= 1 ? (
         <div>
-          <div className="text-center mb-1 ">
+          <div className="text-center mb-1 py-12">
             <div className="inline-flex items-center space-x-3 mb-2">
               <div className="w-2 h-2 bg-gray-800 rounded-full"></div>
               <span className="text-sm text-gray-500 uppercase tracking-wider font-medium">
