@@ -2,23 +2,40 @@ import { sensors } from "../../configs/constants/sensor";
 import { SensorService } from "../../services/sensorService";
 import { useNavigate } from "react-router";
 import { addSensorValidation } from "../../Formik/addSensorValidation";
+import { toast, Toaster } from "sonner";
+import { Spinner } from "../../features/spinner/Spinner";
+import { useState } from "react";
 
 const AddSensor = () => {
+    const [loadingSpinner, setLoadingSpinner] = useState<boolean>(false);
+
     const navigate = useNavigate();
 
     const submitForm = async (sensorName: string, sensorLocation: string) => {
         try {
+            setLoadingSpinner(true);
             const response = await SensorService.addNewSensor(
                 sensorName,
                 sensorLocation
             );
-
             if (!response.success) {
-                alert(response.message);
+                setLoadingSpinner(false);
+                toast.error(response.message, {
+                    style: {
+                        backgroundColor: "red",
+                        color: "white",
+                        width: "full",
+                        height: "3rem",
+                    },
+                    position: "bottom-center",
+                });
             } else {
+                setLoadingSpinner(false);
+
                 navigate("/dashboard");
             }
         } catch (error) {
+            setLoadingSpinner(false);
             console.log("ERROR: ", error);
         }
     };
@@ -27,7 +44,9 @@ const AddSensor = () => {
         addSensorValidation(submitForm);
 
     return (
-        <div className="min-h-screen bg-gray-50 py-12">
+        <div className="min-h-screen bg-gray-50 py-16">
+            {loadingSpinner && <Spinner />}
+            <Toaster />
             <div className="max-w-lg mx-auto px-6">
                 <div className="text-center mb-7 pt-18">
                     <div className="inline-flex items-center space-x-2 mb-4">

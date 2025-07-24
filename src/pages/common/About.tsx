@@ -2,10 +2,9 @@ import { Link } from "react-router";
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-gray-50 py-20">
+    <div className="min-h-screen bg-gray-50 py-22">
       <div className="max-w-6xl mx-auto px-6">
-        {/* Header Section */}
-        <div className="text-center mb-16 pt-12">
+         <div className="text-center mb-16 pt-12">
           <div className="inline-flex items-center space-x-2 mb-6">
             <div className="w-2 h-2 bg-gray-800 rounded-full"></div>
             <span className="text-sm text-gray-500 uppercase tracking-wider font-medium">Our Process</span>
@@ -36,11 +35,9 @@ const About = () => {
           <div className="w-24 h-1 bg-gray-800 rounded-full mx-auto mt-6"></div>
         </div>
 
-        {/* Process Steps Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           
-          {/* Step 1 */}
-          <div className="group bg-white rounded-3xl px-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+           <div className="group bg-white rounded-3xl px-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
             <div className="absolute top-4 right-4 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
               <span className="text-sm font-bold text-gray-600">1</span>
             </div>
@@ -69,8 +66,7 @@ const About = () => {
             </p>
           </div>
 
-          {/* Step 2 */}
-          <div className="group bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+           <div className="group bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
             <div className="absolute top-4 right-4 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
               <span className="text-sm font-bold text-gray-600">2</span>
             </div>
@@ -96,8 +92,7 @@ const About = () => {
             </p>
           </div>
 
-          {/* Step 3 */}
-          <div className="group bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+           <div className="group bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
             <div className="absolute top-4 right-4 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
               <span className="text-sm font-bold text-gray-600">3</span>
             </div>
@@ -123,8 +118,7 @@ const About = () => {
             </p>
           </div>
 
-          {/* Step 4 */}
-          <div className="group bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+           <div className="group bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
             <div className="absolute top-4 right-4 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
               <span className="text-sm font-bold text-gray-600">4</span>
             </div>
@@ -152,8 +146,7 @@ const About = () => {
           </div>
         </div>
 
-        {/* Call to Action */}
-        <div className="text-center mt-16">
+         <div className="text-center mt-16">
           <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 max-w-2xl mx-auto">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Ready to Get Started?</h2>
             <p className="text-gray-600 mb-6">

@@ -5,7 +5,7 @@ const Profile = () => {
     const user: User = useSelector((state: any) => state.currentUser) 
      
     return ( 
-        <div className="min-h-screen bg-gray-50 py-12">
+        <div className="min-h-screen bg-gray-50 py-22">
             <div className="max-w-4xl mx-auto px-6">
                 <div className="text-center mb-7 pt-12">
                     <div className="inline-flex items-center space-x-2 mb-4">
