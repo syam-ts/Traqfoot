@@ -10,6 +10,7 @@ import Profile from "./pages/user/Profile.tsx";
 import ProtectedRoute from "./HOC/ProtectedRoute.tsx";
 import GuestRoute from "./HOC/GuestProtectedRoute.tsx";
 import BasicForm from "./pages/user/Test.tsx";
+import NotFoundPage from "./pages/common/Notfound.tsx";
 
 const router = createBrowserRouter([
   {
@@ -79,8 +80,11 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
-    ],
-  },
+    ], 
+  }, {
+    path: "*",
+    element: <NotFoundPage />
+  }
 ]);
 
 const App = () => {
